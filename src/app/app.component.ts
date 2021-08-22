@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Command } from './businesslogic/models/Command';
 import { Pizzaiolo } from './businesslogic/models/Pizzailo';
 import { CommandService } from './businesslogic/services/command.service';
+import { PizzaioloService } from './businesslogic/services/pizzaiolo.service';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,14 @@ import { CommandService } from './businesslogic/services/command.service';
 export class AppComponent {
 
   
-  constructor(private commandService: CommandService) {
+  constructor(private pizzaioloService: PizzaioloService, private commandService: CommandService) {
   }
 
   title = 'pizzaio';
 
-  pizzaiolo: Pizzaiolo = {name: 'Ludo'};
+  getPizzaiolos(): Pizzaiolo[] {
+    return this.pizzaioloService.getPizzaiolos();
+  }
 
   getUnassignedCommands(): Command[] {
     return this.commandService.getUnassignedCommands();
@@ -29,10 +32,8 @@ export class AppComponent {
     this.selectedCommand = command;
   }
 
-
-
   assign() {
-    this.commandService.assign(this.selectedCommand!, this.pizzaiolo);
+    this.commandService.assign(this.selectedCommand!, this.getPizzaiolos()[0]);
   }
 
   getAssignedCommands(): Command[] {
@@ -45,6 +46,10 @@ export class AppComponent {
 
   getReadyCommands(): Command[] {
     return this.commandService.getReadyCommands();
+  }
+
+  selectPizzaiolo(position: number): void {
+    this.pizzaioloService.selectPizzaiolo(position);
   }
   
 }

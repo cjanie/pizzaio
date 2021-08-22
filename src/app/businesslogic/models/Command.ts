@@ -1,7 +1,11 @@
+import { CommandLine } from "./CommandLine";
 import { Pizzaiolo } from "./Pizzailo";
 
 export interface Command {
-    uiid: string;
+    uiid: string
+    commandLines: CommandLine[]
     assignedTo: Pizzaiolo | undefined
-    isReady: boolean | undefined
+    isReady: boolean
+    isPayed: boolean
+    total: number
 }

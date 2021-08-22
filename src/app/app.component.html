@@ -42,21 +42,9 @@
   .toolbar img {
     margin: 0 16px;
   }
+  
 
-  .toolbar #twitter-logo {
-    height: 40px;
-    margin: 0 8px;
-  }
-
-  .toolbar #youtube-logo {
-    height: 40px;
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo:hover,
-  .toolbar #youtube-logo:hover {
-    opacity: 0.8;
-  }
+  
 
   .content {
     display: flex;
@@ -173,8 +161,9 @@
 
   .terminal {
     position: relative;
-    width: 80%;
-    max-width: 600px;
+    
+    width: 600px;
+    
     border-radius: 6px;
     padding-top: 45px;
     margin-top: 8px;
@@ -319,6 +308,13 @@
     align-items: center;
   }
 
+  .flex-terminal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    
+  }
+
   .flex div {
     width: auto;
   }
@@ -333,22 +329,31 @@
 
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-  <img
+
+  
+    <img *ngIf="getPizzaiolos().length > 0"
     width="40"
     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-  />
-  <span>{{ pizzaiolo.name }}</span>
-    <div class="spacer"></div>
-    <img
+    />
+    <span>{{ getPizzaiolos()[0]!.name }}</span>
+  
+  
+  <div class="spacer"></div>
+
+  
+    <img *ngIf="getPizzaiolos().length > 1" (click)="selectPizzaiolo(1)"
       width="40"
       src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
     />
-    <span>Jojo</span>
-    <img
+    <span (click)="selectPizzaiolo(1)">{{ getPizzaiolos()[1]!.name }}</span>
+  
+    <img *ngIf="getPizzaiolos().length > 2" (click)="selectPizzaiolo(2)"
       width="40"
       src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
     />
-    <span>Lola</span>
+    <span (click)="selectPizzaiolo(2)">{{ getPizzaiolos()[2]!.name }}</span>
+  
+  
 </div>
 
 <div class="content" role="main">
@@ -392,7 +397,7 @@
       <h2>Ready: {{ getReadyCommands().length }}</h2>
       <div class="card-container">
         <div *ngFor="let readyCommand of getReadyCommands()">
-          <button class="card card-small deliver">
+          <button class="card card-small deliver" (click)="select(readyCommand)">
             <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
             <span>{{ readyCommand.uiid }} {{ readyCommand.assignedTo }}</span>
           </button>
@@ -408,7 +413,21 @@
     <!-- Terminal -->
     <div class="terminal center"><!--<div class="terminal" [ngSwitch]="selection.value">-->
       <p>Selected command: {{ selectedCommand?.uiid }}</p>
+      <div class="flex-terminal" *ngFor="let commandLine of selectedCommand!.commandLines">
+        <p>{{commandLine.pizza.name}} {{ commandLine.quantity }}</p>
+        <div class="github-star-badge">
+          <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#1976d2"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+          Recette
+        </div>
+        
+        <div>
+          
+        </div>
+      </div>
+      
       <p>Assigned to: {{ selectedCommand!.assignedTo?.name }}</p>
+      <p *ngIf="selectedCommand!.isPayed === true">Payed online</p>
+      <p *ngIf="selectedCommand!.isPayed === false">To pay at delivery: {{ selectedCommand!.total }} €</p>
     </div>
     <div class="card-container">
       <button class="circle-link" (click)="assign()">
@@ -423,10 +442,7 @@
   <!-- Footer -->
   <footer>
       
-    <div class="github-star-badge">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#1976d2"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-      Recette
-    </div>
+    
       
   </footer>
 
