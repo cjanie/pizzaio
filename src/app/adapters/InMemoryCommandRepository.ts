@@ -13,11 +13,11 @@ export class InMemoryCommandRepository implements CommandRepository {
         let commands: Command[] = []
         for(let i= 0; i<6; i++) {
         let commandLine1: CommandLine = {
-            pizza: {name: "pizza", ingredients: [{name: 'chèvre chaud'}, {name: 'artichaux'}]}, 
+            pizza: {name: "pizza marguerita", ingredients: [{name: 'chèvre chaud'}, {name: 'artichaux'}]}, 
             quantity: 2
         }
         let commandLine2: CommandLine = {
-            pizza: {name: "pizza", ingredients: [{name: 'chèvre chaud'}, {name: 'artichaux'}]}, 
+            pizza: {name: "pizza anchoix", ingredients: [{name: 'chèvre chaud'}, {name: 'artichaux'}]}, 
             quantity: 6
         }
         const command: Command = {

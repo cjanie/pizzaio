@@ -368,7 +368,7 @@
   <div class="flex">
     <div class="center">
       <!-- New commands -->
-      <h2>New: {{ getUnassignedCommands().length }} </h2>
+      <h2 *ngIf="getUnassignedCommands().length > 0">New: {{ getUnassignedCommands().length }} </h2>
       <div class="card-container">
         <div *ngFor="let unassignedCommand of getUnassignedCommands()">
           <button class="card card-small new" (click)="select(unassignedCommand)">
@@ -381,7 +381,7 @@
     
     <div class="center">
       <!-- Assigned commands -->
-      <h2>Pending: {{ getAssignedCommands().length }} </h2>
+      <h2 *ngIf="getAssignedCommands().length > 0">Pending: {{ getAssignedCommands().length }} </h2>
       <div class="card-container">
         <div *ngFor="let assignedCommand of getAssignedCommands()">
           <button class="card card-small preparation" (click)="select(assignedCommand)">
@@ -394,7 +394,7 @@
 
     <div class="center">
       <!-- Assigned commands -->
-      <h2>Ready: {{ getReadyCommands().length }}</h2>
+      <h2 *ngIf="getReadyCommands().length > 0">Ready: {{ getReadyCommands().length }}</h2>
       <div class="card-container">
         <div *ngFor="let readyCommand of getReadyCommands()">
           <button class="card card-small deliver" (click)="select(readyCommand)">
@@ -414,10 +414,9 @@
     <div class="terminal center"><!--<div class="terminal" [ngSwitch]="selection.value">-->
       <p>Selected command: {{ selectedCommand?.uiid }}</p>
       <div class="flex-terminal" *ngFor="let commandLine of selectedCommand!.commandLines">
-        <p>{{commandLine.pizza.name}} {{ commandLine.quantity }}</p>
         <div class="github-star-badge">
+          {{ commandLine.quantity }} {{commandLine.pizza.name}}
           <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#1976d2"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-          Recette
         </div>
         
         <div>
